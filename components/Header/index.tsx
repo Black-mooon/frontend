@@ -5,9 +5,17 @@ import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
+export function checkIfLoggedIn(): boolean {
+  if (localStorage.getItem('token')) {
+    return true
+  }
+  return false
+}
+
 const Header = () => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -34,6 +42,20 @@ const Header = () => {
       setOpenIndex(index);
     }
   };
+
+  useEffect(() => {
+    if (checkIfLoggedIn()) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+
+    return () => {
+      setIsLoggedIn(false)
+    }
+  }, [isLoggedIn])
+
+
 
   return (
     <>
@@ -144,18 +166,40 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                <Link
-                  href="/signin"
-                  className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/signup"
-                  className="ease-in-up hidden rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                >
-                  Sign Up
-                </Link>
+                {
+                  !isLoggedIn ? <>
+                    <Link
+                      href="/signin"
+                      className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="ease-in-up hidden rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                    >
+                      Sign Up
+                    </Link>
+                  </> : <><Link
+                    href="/dashboard"
+                    className="ease-in-up hidden rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                  >
+                    Dashboard
+                  </Link>
+                    <button
+
+                      className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
+                      onClick={() => {
+                        setIsLoggedIn(false)
+                        localStorage.clear()
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </>
+
+                }
+
                 <div>
                   <ThemeToggler />
                 </div>

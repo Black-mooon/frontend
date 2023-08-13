@@ -4,6 +4,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import { UserIcon, CalendarIcon, FolderIcon, Bars2Icon } from '@heroicons/react/24/outline'
 import { HomeModernIcon, ChartBarIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { InboxIcon } from '@heroicons/react/20/solid'
+import axios from 'axios'
+import Image from 'next/image'
 
 
 const navigation = [
@@ -15,6 +17,7 @@ const navigation = [
   // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ];
 
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
@@ -22,7 +25,7 @@ function classNames(...classes: any) {
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
- 
+
   const handleCreateClass = (e: any) => {
     e.preventDefault();
     axios
@@ -34,7 +37,7 @@ const Dashboard = () => {
       });
   };
   const handleShowCreateClass = () => {
-    if(!showCreate){setShowCreate(true);}
+    if (!showCreate) { setShowCreate(true); }
   }
 
   return (
@@ -93,8 +96,8 @@ const Dashboard = () => {
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
                     <Image
-                    width={100}
-                    height={100}
+                      width={100}
+                      height={100}
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
                       alt="Workflow"
@@ -131,8 +134,8 @@ const Dashboard = () => {
                     <div className="flex items-center">
                       <div>
                         <Image
-                        width={100}
-                        height={100}
+                          width={100}
+                          height={100}
                           className="inline-block h-10 w-10 rounded-full"
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt=""
@@ -288,6 +291,7 @@ const Dashboard = () => {
                         </button>
                       </div>}
                     </div>
+
                   </div>
                 </div>
               </div>

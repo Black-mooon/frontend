@@ -20,6 +20,7 @@ const SigninPage = () => {
         if (res.status == 200) {
           router.push('./dashboard')
           localStorage.setItem("token", res.data.token || "")
+          router.push('/')
         }
       })
   }
