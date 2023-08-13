@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { useState } from 'react'
 import axios from "axios";
@@ -15,13 +15,16 @@ const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("");
+
+  const router = useRouter();
 
   const handleSignUp = (e: any) => {
     e.preventDefault();
-    axios.post("https://blackmoon-backend.onrender.com/api/v1/user/register", { name, email, password, phone })
+    axios.post("https://blackmoon-backend.onrender.com/api/v1/user/register", { name, email, password, phone, role })
       .then((res) => {
         if (res.status == 201) {
-          alert('Registration Sucessful')
+          router.push('./signin')
         }
       });
   }
@@ -108,6 +111,19 @@ const SignupPage = () => {
                       onChange={(e) => setPhone(e.target.value)}
                       className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                     />
+                  </div>
+                  <div className="mb-8">
+                    <label
+                      htmlFor="role"
+                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                    >
+                      {" "}
+                      Role{" "}
+                    </label>
+                    <select className="p-4 rounded dark:bg-[#242B51]" onChange={(e) => setRole(e.target.value)}>
+                      <option>Student</option>
+                      <option>Faculty</option>
+                    </select>
                   </div>
                   <div className="mb-8 flex">
                     <label

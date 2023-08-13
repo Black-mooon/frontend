@@ -4,31 +4,48 @@ import { Dialog, Transition } from '@headlessui/react'
 import { UserIcon, CalendarIcon, FolderIcon, Bars2Icon } from '@heroicons/react/24/outline'
 import { HomeModernIcon, ChartBarIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { InboxIcon } from '@heroicons/react/20/solid'
-import Image from 'next/image'
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeModernIcon, current: true },
-  { name: 'Team', href: '#', icon: UserIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-]
+  { name: "Classess", href: "#", icon: FolderIcon, current: true },
+  // { name: 'Team', href: '#', icon: UserIcon, current: false },
+  // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+  // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+  // { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+];
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
+ 
+  const handleCreateClass = (e: any) => {
+    e.preventDefault();
+    axios
+      .post("https://blackmoon-backend.onrender.com/api/v1/classroom/", {})
+      .then((res) => {
+        if (res.status == 201) {
+          alert("classroom created");
+        }
+      });
+  };
+  const handleShowCreateClass = () => {
+    if(!showCreate){setShowCreate(true);}
+  }
 
   return (
     <>
-
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 md:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -66,7 +83,10 @@ const Dashboard = () => {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XMarkIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
@@ -87,15 +107,17 @@ const Dashboard = () => {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
                       >
                         <item.icon
                           className={classNames(
-                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                            'mr-4 flex-shrink-0 h-6 w-6'
+                            item.current
+                              ? "text-gray-500"
+                              : "text-gray-400 group-hover:text-gray-500",
+                            "mr-4 flex-shrink-0 h-6 w-6"
                           )}
                           aria-hidden="true"
                         />
@@ -117,15 +139,21 @@ const Dashboard = () => {
                         />
                       </div>
                       <div className="ml-3">
-                        <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                        <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                        <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
+                          Tom Cook
+                        </p>
+                        <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+                          View profile
+                        </p>
                       </div>
                     </div>
                   </a>
                 </div>
               </div>
             </Transition.Child>
-            <div className="flex-shrink-0 w-14">{/* Force sidebar to shrink to fit close icon */}</div>
+            <div className="flex-shrink-0 w-14">
+              {/* Force sidebar to shrink to fit close icon */}
+            </div>
           </Dialog>
         </Transition.Root>
 
@@ -135,9 +163,7 @@ const Dashboard = () => {
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 dark:bg-black bg-white">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-                <Image
-                  width={100}
-                  height={100}
+                <img
                   className="h-8 w-auto"
                   src=""
                   alt="demo"
@@ -149,14 +175,18 @@ const Dashboard = () => {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      item.current
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
                     <item.icon
                       className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6'
+                        item.current
+                          ? "text-gray-500"
+                          : "text-gray-400 group-hover:text-gray-500",
+                        "mr-3 flex-shrink-0 h-6 w-6"
                       )}
                       aria-hidden="true"
                     />
@@ -176,8 +206,12 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                      Tom Cook
+                    </p>
+                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                      View profile
+                    </p>
                   </div>
                 </div>
               </a>
@@ -197,22 +231,74 @@ const Dashboard = () => {
           </div>
           <main className="flex-1 md:pt-10">
             <div className="py-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex">
+                <h1 className="text-2xl font-semibold text-gray-900">
+                  Dashboard
+                </h1>
+                <button
+                  className="bg-white w-[180px] text-black font-bold hover:bg-blue-700 py-2 px-4 rounded m-auto"
+                  onClick={handleShowCreateClass}
+                >
+                  Create Class
+                </button>
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                {/* Replace with your content */}
+                Classes
                 <div className="py-4">
-                  <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+                  <div className="border-2  border-gray-200 rounded py-10 p-4">
+                    <div className="flex flex-col gap-4 ">
+                      <div className='bg-white rounded text-black p-2 font-bold cursor-pointer'>class 1</div>
+                      <div className='bg-white rounded text-black p-2 font-bold cursor-pointer'>class 2</div>
+                      <div className='bg-white rounded text-black p-2 font-bold cursor-pointer'>class 3</div>
+
+                      {showCreate && <div className="w-[50%] m-auto">
+                        <div className="mb-8">
+                          <label
+                            htmlFor="classname"
+                            className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                          >
+                            Your Class Name
+                          </label>
+                          <input
+                            type="classname"
+                            name="classname"
+                            placeholder="Enter your classname"
+                            className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                          />
+                        </div>
+                        <div className="mb-8">
+                          <label
+                            htmlFor="classdesc"
+                            className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                          >
+                            Your Class Description
+                          </label>
+                          <input
+                            type="classdesc"
+                            name="classdesc"
+                            placeholder="Enter your class description"
+                            className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                          />
+                        </div>
+                        <button
+                          className="bg-white w-[180px] text-black font-bold hover:bg-blue-700 py-2 px-4 rounded m-auto"
+                          onClick={handleCreateClass}
+                        >
+                          Create
+                        </button>
+                      </div>}
+                    </div>
+                  </div>
                 </div>
-                {/* /End replace */}
               </div>
             </div>
           </main>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
+
+
 
 export default Dashboard;

@@ -3,11 +3,14 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from 'react'
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   const handleSignIn = (e: any) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const SigninPage = () => {
       .then((res) => {
 
         if (res.status == 200) {
-          alert('Login Sucessful')
+          router.push('./dashboard')
           localStorage.setItem("token", res.data.token || "")
         }
       })
