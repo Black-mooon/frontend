@@ -125,9 +125,9 @@ const Dashboard = () => {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
+        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
+          <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 dark:bg-black bg-white">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
@@ -136,7 +136,7 @@ const Dashboard = () => {
                   alt="Workflow"
                 />
               </div>
-              <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
+              <nav className="mt-5 flex-1 px-2 bg-white dark:bg-black space-y-1">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -177,7 +177,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="md:pl-64 flex flex-col flex-1">
+        <div className="md:pl-64 flex flex-col flex-1 ">
           <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
             <button
               type="button"
@@ -188,7 +188,7 @@ const Dashboard = () => {
               <Bars2Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1">
+          <main className="flex-1 md:pt-10">
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
