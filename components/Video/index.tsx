@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
-
+// @ts-ignore next-line
 import ModalVideo from "react-modal-video";
 
 const Video = () => {
@@ -58,7 +58,7 @@ const Video = () => {
       />
 
       <div className="absolute bottom-0 left-0 right-0 z-[-1]">
-        <img src="/images/video/shape.svg" alt="shape" className="w-full" />
+        <Image width={100} height={100} src="/images/video/shape.svg" alt="shape" className="w-full" />
       </div>
     </section>
   );

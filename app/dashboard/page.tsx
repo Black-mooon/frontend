@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { UserIcon, CalendarIcon, FolderIcon, Bars2Icon } from '@heroicons/react/24/outline'
 import { HomeModernIcon, ChartBarIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { InboxIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 
 const navigation = [
@@ -71,7 +72,9 @@ const Dashboard = () => {
                 </Transition.Child>
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
-                    <img
+                    <Image
+                    width={100}
+                    height={100}
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
                       alt="Workflow"
@@ -105,7 +108,9 @@ const Dashboard = () => {
                   <a href="#" className="flex-shrink-0 group block">
                     <div className="flex items-center">
                       <div>
-                        <img
+                        <Image
+                        width={100}
+                        height={100}
                           className="inline-block h-10 w-10 rounded-full"
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt=""
@@ -130,7 +135,9 @@ const Dashboard = () => {
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 dark:bg-black bg-white">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-                <img
+                <Image
+                  width={100}
+                  height={100}
                   className="h-8 w-auto"
                   src=""
                   alt="demo"
@@ -162,7 +169,7 @@ const Dashboard = () => {
               <a href="#" className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
-                    <img
+                    <Image
                       className="inline-block h-9 w-9 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
