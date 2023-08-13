@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ]
 
-function classNames(...classes:any) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   return (
     <>
-      
+
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
@@ -132,8 +132,8 @@ const Dashboard = () => {
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                  alt="Workflow"
+                  src=""
+                  alt="demo"
                 />
               </div>
               <nav className="mt-5 flex-1 px-2 bg-white dark:bg-black space-y-1">

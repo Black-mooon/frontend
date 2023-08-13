@@ -1,26 +1,29 @@
 "use client"
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from 'react'
 
 const SigninPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSignIn = (e :any) => {
-      e.preventDefault();
-      axios.post("https://blackmoon-backend.onrender.com/api/v1/user/login",{email,password})
-      .then((res) =>{
-       
-         if(res.status == 200) {
+  const handleSignIn = (e: any) => {
+    e.preventDefault();
+    axios.post("https://blackmoon-backend.onrender.com/api/v1/user/login", { email, password })
+      .then((res) => {
+
+        if (res.status == 200) {
           alert('Login Sucessful')
           localStorage.setItem("token", res.data.token || "")
-         }
+        }
       })
   }
 
   return (
     <>
+      <Header />
       <section className="relative z-10 overflow-hidden pt-36 pb-16 md:pb-20 lg:pt-[180px] lg:pb-28">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -32,7 +35,7 @@ const SigninPage = () => {
                 <p className="mb-11 text-center text-base font-medium text-body-color">
                   Login to your account for a faster checkout.
                 </p>
-                
+
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                   <p className="w-full px-5 text-center text-base font-medium text-body-color">
@@ -116,7 +119,7 @@ const SigninPage = () => {
                   </div>
                   <div className="mb-6">
                     <button className="flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
-                    onClick={handleSignIn}
+                      onClick={handleSignIn}
                     >
                       Sign in
                     </button>
@@ -190,6 +193,7 @@ const SigninPage = () => {
           </svg>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
